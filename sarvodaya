@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarvodaya Security Training</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            --primary: #00E5FF;
+            --secondary: #00FF9D;
+            --accent: #FFA500;
+            --background: #000000;
+            --text: #FFFFFF;
+            --card-bg: #111111;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+            font-size: 0.8em;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('/placeholder.svg?height=1080&width=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            text-shadow: 0 0 10px var(--primary);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button.primary {
+            background: var(--gradient);
+            color: var(--background);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+                        url('/placeholder.svg?height=800&width=1200');
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(17, 17, 17, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        /* Course Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .course-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .course-price {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .course-rating {
+            color: var(--secondary);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .team-member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-member h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .team-member-social a {
+            color: var(--text);
+            transition: color 0.3s;
+        }
+
+        .team-member-social a:hover {
+            color: var(--primary);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+                        url('/placeholder.svg?height=800&width=1200');
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 6rem 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: rgba(17, 17, 17, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.2;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-author-info {
+            flex-grow: 1;
+        }
+
+        .testimonial-author-name {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .testimonial-author-title {
+            font-size: 0.9rem;
+            color: var(--text);
+            opacity: 0.8;
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .blog-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--card-bg);
+            padding: 6rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns:  repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-input {
+            padding: 1rem;
+            background: var(--background);
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(-50px);
+            transition: transform 0.3s;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--background);
+            color: var(--text);
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--primary);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons {
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            color: var(--text);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--background);
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+                border-bottom: 1px solid var(--primary);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav-container container">
+            <div class="logo-container">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202024-10-31%20at%2014.12.46-MdrwvMhCHdIrDPur5fGxnhP2hRtTjt.jpeg" alt="Sarvodaya Security Logo" class="logo-image">
+                <a href="#" class="logo-text">
+                    Sarvodaya
+                    <span>SECURITY</span>
+                </a>
+            </div>
+            <button class="nav-toggle">☰</button>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#courses">Courses</a>
+                <a href="#team">Team</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <h1>Stay Secure with Sarvodaya Security</h1>
+            <p>Master cybersecurity with industry-leading training and certification programs</p>
+            <div class="cta-buttons">
+                <a href="#courses" class="cta-button primary">Explore Courses</a>
+                <a href="#contact" class="cta-button secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3 class="feature-title">Industry Experts</h3>
+                    <p>Learn from certified professionals with real-world experience</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-laptop-code feature-icon"></i>
+                    <h3 class="feature-title">Hands-on Training</h3>
+                    <p>Practice in our state-of-the-art virtual labs</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-certificate feature-icon"></i>
+                    <h3 class="feature-title">Certification</h3>
+                    <p>Earn industry-recognized certifications</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock feature-icon"></i>
+                    <h3 class="feature-title">Flexible Learning</h3>
+                    <p>Learn at your own pace with 24/7 access</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="course-grid">
+                <!-- Course cards will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container">
+            <h2 class="section-title">Meet Our Expert Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="/placeholder.svg?height=300&width=300" alt="Team Member">
+                    <div class="team-member-info">
+                        <h3>Pranshu</h3>
+                        <p>Chief Security Officer</p>
+                        <p>Certified Ethical Hacker (CEH)</p>
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/placeholder.svg?height=300&width=300" alt="Team Member">
+                    <div class="team-member-info">
+                        <h3>Suraj Mondal</h3>
+                        <p>Web Security Expert</p>
+                        <p>OSCP Certified</p>
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/placeholder.svg?height=300&width=300" alt="Team Member">
+                    <div class="team-member-info">
+                        <h3>Debanjan Saha</h3>
+                        <p>IoT Security Specialist</p>
+                        <p>CompTIA Security+</p>
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Students Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"The practical approach to security training at Sarvodaya has been invaluable. The hands-on labs and real-world scenarios have prepared me for actual security challenges."</p>
+                    <div class="testimonial-author">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Testimonial Author">
+                        <div class="testimonial-author-info">
+                            <div class="testimonial-author-name">Alex Johnson</div>
+                            <div class="testimonial-author-title">Security Analyst at TechCorp</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"The instructors are top-notch professionals who bring their real-world experience to the classroom. The course content is always up-to-date with the latest security trends."</p>
+                    <div class="testimonial-author">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Testimonial Author">
+                        <div class="testimonial-author-info">
+                            <div class="testimonial-author-name">Sarah Chen</div>
+                            <div class="testimonial-author-title">Cybersecurity Engineer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"I started as a complete beginner, but the structured learning path and supportive community helped me land my dream job in cybersecurity. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <img src="/placeholder.svg?height=50&width=50" alt="Testimonial Author">
+                        <div class="testimonial-author-info">
+                            <div class="testimonial-author-name">Michael Smith</div>
+                            <div class="testimonial-author-title">Information Security Manager</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <div class="container">
+            <h2 class="section-title">Latest Security Insights</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Blog Post" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> Oct 31, 2024</span>
+                            <span><i class="far fa-user"></i> Pranshu</span>
+                        </div>
+                        <h3 class="blog-title">Understanding Zero Trust Security</h3>
+                        <p>Explore the principles of Zero Trust architecture and why it's crucial for modern security...</p>
+                        <a href="#" class="cta-button secondary">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Blog Post" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> Oct 30, 2024</span>
+                            <span><i class="far fa-user"></i> Suraj Mondal</span>
+                        </div>
+                        <h3 class="blog-title">Web Application Security Best Practices</h3>
+                        <p>Learn the essential security practices for protecting modern web applications...</p>
+                        <a href="#" class="cta-button secondary">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="/placeholder.svg?height=200&width=300" alt="Blog Post" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> Oct 29, 2024</span>
+                            <span><i class="far fa-user"></i> Debanjan Saha</span>
+                        </div>
+                        <h3 class="blog-title">IoT Security Challenges</h3>
+                        <p>Discover the unique security challenges posed by Internet of Things devices...</p>
+                        <a href="#" class="cta-button secondary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>123 Security Street, Cyber City, 12345</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@sarvodayasecurity.com</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-input" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="courseModal">
+        <div class="modal-content">
+            <button class="modal-close">×</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Sarvodaya Security provides top-tier cybersecurity training to individuals and organizations worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2024 Sarvodaya Security. All rights reserved.</p>
+            <p>Powered by <a href="https://jetweb.in" style="color: var(--primary);">JetWeb</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // 3D Animation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({
+            canvas: document.getElementById('hero-canvas'),
+            alpha: true
+        });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.position.z = 5;
+
+        const geometry = new THREE.TorusGeometry(1, 0.3, 16, 100);
+        const material = new THREE.MeshBasicMaterial({
+            color: 0x00E5FF,
+            wireframe: true
+        });
+        const torus = new THREE.Mesh(geometry, material);
+        scene.add(torus);
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 5000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.005,
+            color: 0x00FF9D
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            torus.rotation.x += 0.01;
+            torus.rotation.y += 0.005;
+            particlesMesh.rotation.y += 0.001;
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        });
+
+        // Course Data
+        const courses = [
+            {
+                title: 'Ethical Hacking Fundamentals',
+                description: 'Learn the basics of ethical hacking and penetration testing.',
+                image: '/placeholder.svg?height=200&width=300',
+                price: 499,
+                rating: 4.8
+            },
+            {
+                title: 'Advanced Web Application Security',
+                description: 'Master techniques to secure web applications from various threats.',
+                image: '/placeholder.svg?height=200&width=300',
+                price: 599,
+                rating: 4.9
+            },
+            {
+                title: 'Network Security Specialist',
+                description: 'Become an expert in securing network infrastructure.',
+                image: '/placeholder.svg?height=200&width=300',
+                price: 699,
+                rating: 4.7
+            },
+            {
+                title: 'Malware Analysis and Reverse Engineering',
+                description: 'Learn to analyze and understand malicious software.',
+                image: '/placeholder.svg?height=200&width=300',
+                price: 799,
+                rating: 4.8
+            },
+            {
+                title: 'Cloud Security Essentials',
+                description: 'Explore security challenges in cloud computing environments.',
+                image: '/placeholder.svg?height=200&width=300',
+                price: 549,
+                rating: 4.6
+            },
+            {
+                title: 'IoT Security Fundamentals',
+                description: 'Discover the unique security challenges in Internet of Things devices.',
+                image: '/placeholder.svg?height=200&width=300',
+                price: 649,
+                rating: 4.7
+            }
+        ];
+
+        // Generate Course Cards
+        const courseGrid = document.querySelector('#courses .course-grid');
+
+        courses.forEach((course) => {
+            const card = document.createElement('div');
+            card.className = 'course-card';
+            card.innerHTML = `
+                <img src="${course.image}" alt="${course.title}" class="course-image">
+                <div class="course-content">
+                    <h3 class="course-title">${course.title}</h3>
+                    <p>${course.description}</p>
+                    <div class="course-details">
+                        <span class="course-price">$${course.price}</span>
+                        <span class="course-rating">
+                            ${course.rating} <i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <button class="cta-button primary" onclick="openModal('${course.title}', ${course.price})">
+                        Learn More
+                    </button>
+                </div>
+            `;
+            courseGrid.appendChild(card);
+        });
+
+        // Modal Functionality
+        const modal = document.querySelector('.modal');
+        const modalContent = document.getElementById('modalContent');
+        const modalClose = document.querySelector('.modal-close');
+
+        function openModal(title, price) {
+            modalContent.innerHTML = `
+                <h2>${title}</h2>
+                <p>Are you ready to enhance your cybersecurity skills with our ${title.toLowerCase()} course?</p>
+                <p>Course Fee: $${price}</p>
+                <div style="margin-top: 2rem;">
+                    <button class="cta-button primary" onclick="simulateEnrollment('${title}', ${price})">Enroll Now</button>
+                    <button class="cta-button secondary" style="margin-left: 1rem;" onclick="closeModal()">Maybe Later</button>
+                </div>
+            `;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalClose.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        function simulateEnrollment(title, price) {
+            modalContent.innerHTML = `
+                <h2>Enrolling in ${title}</h2>
+                <p>Processing your enrollment...</p>
+                <div id="enrollment-progress" style="width: 100%; height: 20px; background: var(--background); margin: 1rem 0;">
+                    <div style="width: 0%; height: 100%; background: var(--primary); transition: width 3s ease-in-out;"></div>
+                </div>
+                <p>Preparing your learning environment...</p>
+            `;
+
+            setTimeout(() => {
+                document.querySelector('#enrollment-progress div').style.width = '100%';
+            }, 100);
+
+            setTimeout(() => {
+                modalContent.innerHTML = `
+                    <h2>Welcome to ${title}!</h2>
+                    <p>Congratulations! You've successfully enrolled in our ${title.toLowerCase()} course.</p>
+                    <p>Your journey to becoming a cybersecurity expert starts now.</p>
+                    <p>Check your email for login details and course materials.</p>
+                    <button class="cta-button primary" onclick="closeModal()">Start Learning</button>
+                `;
+            }, 3500);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .course-card, .team-member, .testimonial, .blog-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Dynamic copyright year
+        document.querySelector('footer p').innerHTML = `&copy; ${new Date().getFullYear()} Sarvodaya Security. All rights reserved.`;
+
+        // Form submission (you would typically handle this with a backend)
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message. We will get back to you soon!');
+            this.reset();
+        });
+
+        // Add a simple loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
