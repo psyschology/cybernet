@@ -3,40 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberSecure Training</title>
+    <title>CyberSecure Training - Master the Art of Hacking</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #3498db;
-            --secondary: #2c3e50;
-            --accent: #e74c3c;
-            --background: #ffffff;
-            --text: #1a1a1a;
-            --card-bg: #f9f9f9;
-        }
-
-        [data-theme="dark"] {
-            --primary: #2980b9;
-            --secondary: #34495e;
-            --accent: #c0392b;
-            --background: #1a1a1a;
-            --text: #ffffff;
-            --card-bg: #2c2c2c;
+            --primary: #00ff00;
+            --secondary: #1a1a1a;
+            --accent: #ff00ff;
+            --background: #000000;
+            --text: #00ff00;
+            --card-bg: #0a0a0a;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
+            transition: all 0.3s ease;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Courier New', monospace;
             background-color: var(--background);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -64,15 +56,16 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #fff;
+            color: var(--primary);
             text-decoration: none;
+            text-shadow: 0 0 10px var(--primary);
         }
 
         .nav-toggle {
             display: none;
             background: none;
             border: none;
-            color: #fff;
+            color: var(--primary);
             font-size: 1.5rem;
             cursor: pointer;
         }
@@ -83,14 +76,16 @@
         }
 
         .nav-links a {
-            color: #fff;
+            color: var(--primary);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            text-shadow: 0 0 5px var(--primary);
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent);
         }
 
         /* Hero Section */
@@ -117,36 +112,80 @@
             position: relative;
             z-index: 2;
             max-width: 800px;
-            animation: fadeIn 1s ease-out;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-5px, 5px);
+            }
+            40% {
+                transform: translate(-5px, -5px);
+            }
+            60% {
+                transform: translate(5px, 5px);
+            }
+            80% {
+                transform: translate(5px, -5px);
+            }
+            100% {
+                transform: translate(0);
+            }
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            color: #fff;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text);
+            text-shadow: 0 0 5px var(--text);
         }
 
         .cta-button {
             display: inline-block;
             padding: 1rem 2rem;
             background: var(--accent);
-            color: #fff;
+            color: var(--background);
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 5px;
             font-weight: bold;
-            transform: translateY(0);
-            transition: transform 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: var(--primary);
+            color: var(--background);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         /* Section Styles */
@@ -158,39 +197,8 @@
             font-size: 2.5rem;
             text-align: center;
             margin-bottom: 3rem;
-        }
-
-        /* Team Section */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .team-member {
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-        }
-
-        .team-member img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .team-member-info {
-            padding: 1.5rem;
-        }
-
-        .team-member h3 {
-            margin-bottom: 0.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
         }
 
         /* Course Grid */
@@ -204,12 +212,13 @@
             background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .course-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
         }
 
         .course-image {
@@ -225,73 +234,7 @@
         .course-title {
             font-size: 1.25rem;
             margin-bottom: 1rem;
-        }
-
-        /* Testimonials */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .testimonial p {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-author {
-            font-weight: bold;
-        }
-
-        /* Blog Section */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .blog-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .blog-content {
-            padding: 1.5rem;
-        }
-
-        .blog-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Dark Mode Toggle */
-        .theme-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-            padding: 0.5rem;
-            border-radius: 50%;
-            background: var(--secondary);
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            color: var(--primary);
         }
 
         /* Modal Styles */
@@ -302,7 +245,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -316,7 +259,7 @@
         }
 
         .modal-content {
-            background: var(--background);
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 10px;
             max-width: 600px;
@@ -326,6 +269,8 @@
             position: relative;
             transform: translateY(-50px);
             transition: transform 0.3s;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 20px var(--primary);
         }
 
         .modal.active .modal-content {
@@ -340,13 +285,13 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--text);
+            color: var(--primary);
         }
 
         /* Footer */
         footer {
             background: var(--secondary);
-            color: #fff;
+            color: var(--primary);
             text-align: center;
             padding: 2rem;
         }
@@ -356,20 +301,14 @@
         }
 
         .social-icons a {
-            color: #fff;
+            color: var(--primary);
             font-size: 1.5rem;
             margin: 0 0.5rem;
             transition: color 0.3s;
         }
 
         .social-icons a:hover {
-            color: var(--primary);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            color: var(--accent);
         }
 
         /* Mobile Styles */
@@ -410,11 +349,11 @@
             <a href="#" class="logo">CyberSecure</a>
             <button class="nav-toggle">☰</button>
             <div class="nav-links">
-                <a href="#courses">Courses</a>
-                <a href="#team">Team</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#blog">Blog</a>
-                <a href="#contact">Contact</a>
+                <a href="#courses">Missions</a>
+                <a href="#team">Operatives</a>
+                <a href="#testimonials">Intel</a>
+                <a href="#blog">Logs</a>
+                <a href="#contact">Comms</a>
             </div>
         </nav>
     </header>
@@ -422,116 +361,29 @@
     <section class="hero">
         <canvas id="hero-canvas"></canvas>
         <div class="hero-content">
-            <h1>Secure the Future with Expert Cybersecurity Training</h1>
-            <p>Master the art of cybersecurity with industry-leading instructors</p>
-            <a href="#courses" class="cta-button">Explore Courses</a>
+            <h1>Hack the Planet: Elite Cybersecurity Training</h1>
+            <p>Join the ranks of elite hackers and master the art of digital warfare</p>
+            <a href="#courses" class="cta-button">Infiltrate Now</a>
         </div>
     </section>
 
     <section id="featured-courses">
         <div class="container">
-            <h2 class="section-title">Featured Courses</h2>
+            <h2 class="section-title">Top Secret Missions</h2>
             <div class="course-grid">
                 <!-- Course cards will be dynamically generated -->
             </div>
         </div>
     </section>
 
-    <section id="team">
-        <div class="container">
-            <h2 class="section-title">Meet Our Expert Team</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="./images/pranshu.png" alt="Pranshu">
-                    <div class="team-member-info">
-                        <h3>Pranshu</h3>
-                        <p>Cybersecurity Specialist - CEH</p>
-                        <p>With over a decade of experience, Pranshu leads our advanced security courses.</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="./images/pranshu.png" alt="Suraj Mondal">
-                    <div class="team-member-info">
-                        <h3>Suraj Mondal</h3>
-                        <p>Web Application Penetration Expert</p>
-                        <p>Suraj specializes in identifying and exploiting web application vulnerabilities.</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <img src="./images/pranshu.png" alt="Debanjan Saha">
-                    <div class="team-member-info">
-                        <h3>Debanjan Saha</h3>
-                        <p>Hardware & IoT Pentesting Specialist</p>
-                        <p>Debanjan brings expertise in hardware security and IoT vulnerability assessment.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="courses">
         <div class="container">
-            <h2 class="section-title">Course Catalog</h2>
+            <h2 class="section-title">Mission Catalog</h2>
             <div class="course-grid">
                 <!-- Course catalog cards will be dynamically generated -->
             </div>
         </div>
     </section>
-
-    <section id="testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our Students Say</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial">
-                    <p>"The courses here have been instrumental in advancing my cybersecurity career. The instructors are top-notch and the content is always up-to-date."</p>
-                    <span class="testimonial-author">- Sarah J., Security Analyst</span>
-                </div>
-                <div class="testimonial">
-                    <p>"I've taken several courses, and each one has provided practical skills that I've been able to apply immediately in my work. Highly recommended!"</p>
-                    <span class="testimonial-author">- Mike T., IT Manager</span>
-                
-                </div>
-                <div class="testimonial">
-                    <p>"The hands-on labs and real-world scenarios in these courses have given me confidence in my ability to tackle complex security challenges."</p>
-                    <span class="testimonial-author">- Emily R., Penetration Tester</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="blog">
-        <div class="container">
-            <h2 class="section-title">Latest from Our Blog</h2>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <img src="/placeholder.svg?height=200&width=300" alt="AI in Cybersecurity" class="blog-image">
-                    <div class="blog-content">
-                        <h3 class="blog-title">The Rise of AI in Cybersecurity</h3>
-                        <p>Explore how artificial intelligence is shaping the future of cybersecurity defenses and threats.</p>
-                        <a href="#" class="cta-button">Read More</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <img src="/placeholder.svg?height=200&width=300" alt="Essential Cybersecurity Skills" class="blog-image">
-                    <div class="blog-content">
-                        <h3 class="blog-title">5 Essential Skills for Modern Cybersecurity Professionals</h3>
-                        <p>Discover the key skills that every cybersecurity professional should master in today's digital landscape.</p>
-                        <a href="#" class="cta-button">Read More</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <img src="/placeholder.svg?height=200&width=300" alt="GDPR Impact" class="blog-image">
-                    <div class="blog-content">
-                        <h3 class="blog-title">The Impact of GDPR on Global Cybersecurity Practices</h3>
-                        <p>An in-depth look at how GDPR has influenced cybersecurity strategies worldwide.</p>
-                        <a href="#" class="cta-button">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <button class="theme-toggle">🌓</button>
 
     <div class="modal" id="courseModal">
         <div class="modal-content">
@@ -543,7 +395,7 @@
     <footer id="contact">
         <div class="container">
             <p>© 2024 CyberSecure Training. All rights reserved.</p>
-            <p>Powered by <a href="https://jetweb.in" style="color: #fff;">JetWeb</a></p>
+            <p>Powered by <a href="https://jetweb.in" style="color: var(--primary);">JetWeb</a></p>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -553,23 +405,6 @@
     </footer>
 
     <script>
-        // Dark Mode Toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-        }
-
-        const savedTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
-        setTheme(savedTheme);
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
-
         // Mobile Navigation
         const navToggle = document.querySelector('.nav-toggle');
         const navLinks = document.querySelector('.nav-links');
@@ -589,25 +424,26 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.position.z = 5;
 
-        const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+        const geometry = new THREE.IcosahedronGeometry(1, 1);
         const material = new THREE.MeshPhongMaterial({
-            color: 0x3498db,
+            color: 0x00ff00,
+            wireframe: true,
             shininess: 100
         });
-        const torusKnot = new THREE.Mesh(geometry, material);
-        scene.add(torusKnot);
+        const icosahedron = new THREE.Mesh(geometry, material);
+        scene.add(icosahedron);
 
-        const light = new THREE.DirectionalLight(0xffffff, 1);
+        const light = new THREE.DirectionalLight(0x00ff00, 1);
         light.position.set(5, 5, 5);
         scene.add(light);
 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        const ambientLight = new THREE.AmbientLight(0x00ff00, 0.5);
         scene.add(ambientLight);
 
         function animate() {
             requestAnimationFrame(animate);
-            torusKnot.rotation.x += 0.01;
-            torusKnot.rotation.y += 0.01;
+            icosahedron.rotation.x += 0.005;
+            icosahedron.rotation.y += 0.005;
             renderer.render(scene, camera);
         }
 
@@ -624,40 +460,41 @@
         // Course Data
         const courses = [
             {
-                title: 'Ethical Hacking Fundamentals',
-                description: 'Learn the basics of ethical hacking and penetration testing.',
+                title: 'Ethical Hacking: Infiltration Techniques',
+                description: 'Master the art of ethical hacking and penetration testing.',
                 image: '/placeholder.svg?height=200&width=300',
-                videoId: 'dQw4w9WgXcQ' // Example YouTube video ID
+                price: 499
             },
             {
-                title: 'Web Application Security',
-                description: 'Master the techniques to secure web applications from various threats.',
+                title: 'Web App Exploitation',
+                description: 'Learn to identify and exploit web application vulnerabilities.',
                 image: '/placeholder.svg?height=200&width=300',
-                videoId: 'dQw4w9WgXcQ'
+                price: 599
             },
             {
-                title: 'Network Security',
-                description: 'Understand network security principles and implementation.',
+                title: 'Network Infiltration Mastery',
+                description: 'Advanced techniques for breaching network defenses.',
                 image: '/placeholder.svg?height=200&width=300',
-                videoId: 'dQw4w9WgXcQ'
+                price: 699
             },
             {
-                title: 'Malware Analysis Techniques',
-                description: 'Learn to analyze and understand malicious software.',
+                title: 'Malware Reverse Engineering',
+                description: 'Dissect and analyze malicious software like a pro.',
                 image: '/placeholder.svg?height=200&width=300',
-                videoId: 'dQw4w9WgXcQ'
+                price: 799
             },
             {
-                title: 'Cloud Security Essentials',
-                description: 'Explore security challenges in cloud computing environments.',
+                title: 'Cloud Security: Securing the Skies',
+                
+                description: 'Master the intricacies of cloud security and exploitation.',
                 image: '/placeholder.svg?height=200&width=300',
-                videoId: 'dQw4w9WgXcQ'
+                price: 899
             },
             {
-                title: 'IoT Security',
-                description: 'Discover the unique security challenges in Internet of Things devices.',
+                title: 'IoT Hacking: The Connected Threat',
+                description: 'Explore and exploit vulnerabilities in IoT devices.',
                 image: '/placeholder.svg?height=200&width=300',
-                videoId: 'dQw4w9WgXcQ'
+                price: 749
             }
         ];
 
@@ -673,8 +510,8 @@
                 <div class="course-content">
                     <h3 class="course-title">${course.title}</h3>
                     <p>${course.description}</p>
-                    <button class="cta-button" onclick="openModal('${course.title}', '${course.videoId}')">
-                        Learn More
+                    <button class="cta-button" onclick="openModal('${course.title}', ${course.price})">
+                        Infiltrate
                     </button>
                 </div>
             `;
@@ -690,37 +527,56 @@
         const modalContent = document.getElementById('modalContent');
         const modalClose = document.querySelector('.modal-close');
 
-        function openModal(title, videoId) {
+        function openModal(title, price) {
             modalContent.innerHTML = `
                 <h2>${title}</h2>
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; margin: 2rem 0;">
-                    <iframe 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                        src="https://www.youtube.com/embed/${videoId}"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+                <p>Ready to infiltrate the world of ${title.toLowerCase()}?</p>
+                <p>Mission Cost: $${price}</p>
+                <div style="margin-top: 2rem;">
+                    <button class="cta-button" onclick="simulatePayment(${price})">Accept Mission</button>
+                    <button class="cta-button" style="background: var(--secondary); margin-left: 1rem;" onclick="closeModal()">Abort</button>
                 </div>
-                <p>This comprehensive course covers everything you need to know about ${title.toLowerCase()}. 
-                   Join our expert instructors and start your journey today!</p>
             `;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        modalClose.addEventListener('click', () => {
+        function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = '';
-        });
+        }
+
+        modalClose.addEventListener('click', closeModal);
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
+                closeModal();
             }
         });
+
+        function simulatePayment(price) {
+            modalContent.innerHTML = `
+                <h2>Mission Accepted!</h2>
+                <p>Initiating secure payment protocol...</p>
+                <div id="payment-progress" style="width: 100%; height: 20px; background: var(--secondary); margin: 1rem 0;">
+                    <div style="width: 0%; height: 100%; background: var(--primary); transition: width 3s ease-in-out;"></div>
+                </div>
+                <p>Transferring $${price} to secret account...</p>
+            `;
+
+            setTimeout(() => {
+                document.querySelector('#payment-progress div').style.width = '100%';
+            }, 100);
+
+            setTimeout(() => {
+                modalContent.innerHTML = `
+                    <h2>Mission Briefing Incoming</h2>
+                    <p>Congratulations, agent! Your payment has been processed.</p>
+                    <p>Check your encrypted email for mission details and access codes.</p>
+                    <button class="cta-button" onclick="closeModal()">Acknowledge</button>
+                `;
+            }, 3500);
+        }
     </script>
 </body>
 </html>
