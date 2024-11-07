@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarvodaya Security - Advanced Cybersecurity Training</title>
+    <!-- Existing script -->
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    
+    <!-- Additional libraries and SDKs -->
+
+    <!-- 1. jQuery - Popular JavaScript library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- 2. Bootstrap - Popular CSS framework -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- 3. Animate.css - CSS animation library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- 4. AOS (Animate on Scroll) - Scroll animation library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <!-- 5. Swiper - Modern mobile touch slider -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+    <!-- 6. Chart.js - JavaScript charting library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- 7. Moment.js - Date manipulation library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <!-- 8. Lodash - JavaScript utility library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
+    <!-- 9. Axios - Promise based HTTP client -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- 10. Three.js - 3D graphics library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- 11. Leaflet - Interactive maps library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- 12. Prism.js - Syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+    <!-- 13. Typed.js - Typing animation library -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <!-- 14. Popper.js - Positioning engine -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+
+    <!-- 15. Hammer.js - Touch gestures library -->
+    <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
+
+    <!-- 16. Howler.js - Audio library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+
+    <!-- 17. Lottie - Animated vector graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
+
+    <!-- 18. Anime.js - JavaScript animation engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <!-- 19. Particles.js - Particle systems library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- 20. Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <style>
+        /* Reset and base styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0066ff;
+            --secondary-color: #00ccff;
+            --background-color: #000000;
+            --text-color: #ffffff;
+            --card-bg-color: #111111;
+            --modal-bg-color: rgba(0, 0, 0, 0.8);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+        h5 { font-size: 1.25rem; }
+        h6 { font-size: 1rem; }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* Header styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero section styles */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/random/1920x1080/?cybersecurity') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        /* About section styles */
+        .about {
+            padding: 100px 0;
+            background-color: #0a0a0a;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services section styles */
+        .services {
+            padding: 100px 0;
+            background-color: #050505;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Courses section styles */
+        .courses {
+            padding: 100px 0;
+            background-color: #0a0a0a;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
+        }
+
+        .course-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .course-info {
+            padding: 20px;
+        }
+
+        .course-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .course-info p {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Team section styles */
+        .team {
+            padding: 100px 0;
+            background-color: #050505;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-member-info {
+            padding: 20px;
+        }
+
+        .team-member-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .team-member-info p {
+            color: #888;
+            font-style: italic;
+        }
+
+        .social-links {
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: var(--primary-color);
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Testimonials section styles */
+        .testimonials {
+            padding: 100px 0;
+            background-color: #0a0a0a;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slide {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            margin: 0 20px;
+        }
+
+        .testimonial-slide img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-slide p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-slide h4 {
+            color: var(--primary-color);
+        }
+
+        /* Contact section styles */
+        .contact {
+            padding: 100px 0;
+            background-color: #050505;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #111;
+            color: var(--text-color);
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #111;
+            color: var(--text-color);
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin-bottom: 20px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: var(--modal-bg-color);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg-color);
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-slideInLeft {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 1s ease-out;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                padding: 20px;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Sarvodaya Security</a>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp_Image_2024-11-07_at_18.12.01__1_-removebg-preview-VdkfmmKDR3TcCktlORtxs05YCfDIqK.png" alt="Sarvodaya Security Logo" style="width: 200px; height: auto; margin-bottom: 20px;">
+                <h1>Empowering Cybersecurity Professionals</h1>
+                <p>Join the elite community of cybersecurity experts. Get industry-leading training from certified professionals.</p>
+                <a href="#" class="btn" id="enrollNowBtn">Enroll Now</a>
+                <a href="#courses" class="btn btn-outline">Explore Courses</a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text animate-slideInLeft">
+                        <h2>About Sarvodaya Security</h2>
+                        <p>Sarvodaya Security is a leading cybersecurity training institution dedicated to empowering professionals with cutting-edge skills and knowledge. Our mission is to create a safer digital world by producing highly skilled cybersecurity experts.</p>
+                        <p>With a team of industry-leading instructors and a curriculum that's always up-to-date with the latest threats and defense strategies, we ensure our students are well-prepared for the challenges of the cybersecurity landscape.</p>
+                        <a href="#" class="btn" id="learnMoreBtn">Learn More</a>
+                    </div>
+                    <div class="about-image animate-slideInRight">
+                        <img src="https://source.unsplash.com/random/600x400/?technology" alt="About Sarvodaya Security">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="text-center">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card animate-fadeInUp">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Cybersecurity Training</h3>
+                        <p>Comprehensive training programs covering various aspects of cybersecurity.</p>
+                    </div>
+                    <div class="service-card animate-fadeInUp">
+                        <i class="fas fa-code"></i>
+                        <h3>Secure Coding Practices</h3>
+                        <p>Learn to write secure code and prevent vulnerabilities in software development.</p>
+                    </div>
+                    <div class="service-card animate-fadeInUp">
+                        <i class="fas fa-lock"></i>
+                        <h3>Network Security</h3>
+                        <p>Master the art of securing networks against various cyber threats.</p>
+                    </div>
+                    <div class="service-card animate-fadeInUp">
+                        <i class="fas fa-bug"></i>
+                        <h3>Penetration Testing</h3>
+                        <p>Learn ethical hacking techniques to identify and fix security vulnerabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses" class="courses">
+            <div class="container">
+                <h2 class="text-center">Our Courses</h2>
+                <div class="course-grid">
+                    <div class="course-card animate-fadeInUp">
+                        <img src="https://source.unsplash.com/random/400x300/?hacking" alt="Ethical Hacking">
+                        <div class="course-info">
+                            <h3>Ethical Hacking</h3>
+                            <p>Learn the art of ethical hacking and protect systems from cyber threats.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 12 weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                            </div>
+                            <a href="#" class="btn course-details-btn" data-course="ethical-hacking">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="course-card animate-fadeInUp">
+                        <img src="https://source.unsplash.com/random/400x300/?network" alt="Network Security">
+                        <div class="course-info">
+                            <h3>Network Security</h3>
+                            <p>Master the techniques to secure networks and prevent unauthorized access.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 10 weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                            </div>
+                            <a href="#" class="btn course-details-btn" data-course="network-security">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="course-card animate-fadeInUp">
+                        <img src="https://source.unsplash.com/random/400x300/?cryptography" alt="Cryptography">
+                        <div class="course-info">
+                            <h3>Cryptography</h3>
+                            <p>Dive into the world of encryption and secure communication protocols.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 8 weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Advanced</span>
+                            </div>
+                            <a href="#" class="btn course-details-btn" data-course="cryptography">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="team">
+            <div class="container">
+                <h2 class="text-center">Our Expert Team</h2>
+                <div class="team-grid">
+                    <div class="team-member animate-fadeInUp">
+                        <img src="https://source.unsplash.com/random/300x300/?portrait" alt="John Doe">
+                        <div class="team-member-info">
+                            <h3>John Doe</h3>
+                            <p>Chief Security Officer</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member animate-fadeInUp">
+                        <img src="https://source.unsplash.com/random/300x301/?portrait" alt="Jane Smith">
+                        <div class="team-member-info">
+                            <h3>Jane Smith</h3>
+                            <p>Lead Ethical Hacker</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member animate-fadeInUp">
+                        <img src="https://source.unsplash.com/random/300x302/?portrait" alt="Mike Johnson">
+                        <div class="team-member-info">
+                            <h3>Mike Johnson</h3>
+                            <p>Cryptography Expert</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2 class="text-center">What Our Students Say</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial-slide">
+                        <img src="https://source.unsplash.com/random/100x100/?portrait" alt="Sarah L.">
+                        <p>"The courses at Sarvodaya Security have been instrumental in advancing my career in cybersecurity. The hands-on approach and expert instructors make complex concepts easy to grasp."</p>
+                        <h4>Sarah L.</h4>
+                        <p>Security Analyst at Tech Corp</p>
+                    </div>
+                    <!-- Add more testimonial slides here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="text-center">Get in Touch</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Sarvodaya Security is dedicated to empowering cybersecurity professionals with cutting-edge training and resources.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@sarvodayasecurity.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sarvodaya Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="enrollModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Enroll Now</h2>
+            <form id="enrollForm">
+                <div class="form-group">
+                    <label for="enrollName">Name</label>
+                    <input type="text" id="enrollName" name="enrollName" required>
+                </div>
+                <div class="form-group">
+                    <label for="enrollEmail">Email</label>
+                    <input type="email" id="enrollEmail" name="enrollEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="enrollCourse">Select Course</label>
+                    <select id="enrollCourse" name="enrollCourse" required>
+                        <option value="">Choose a course</option>
+                        <option value="ethical-hacking">Ethical Hacking</option>
+                        <option value="network-security">Network Security</option>
+                        <option value="cryptography">Cryptography</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Submit Enrollment</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="courseDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="courseDetailsTitle"></h2>
+            <div id="courseDetailsContent"></div>
+            <a href="#" class="btn" id="enrollFromDetailsBtn">Enroll in this Course</a>
+        </div>
+    </div>
+
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Payment Details</h2>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="cardName">Name on Card</label>
+                    <input type="text" id="cardName" name="cardName" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" name="cardNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardExpiry">Expiry Date</label>
+                    <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardCVC">CVC</label>
+                    <input type="text" id="cardCVC" name="cardCVC" required>
+                </div>
+                <button type="submit" class="btn">Complete Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+        // Navigation menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 0);
+        });
+
+        // Intersection Observer for animations
+        const animatedElements = document.querySelectorAll('.animate-fadeInUp, .animate-slideInLeft, .animate-slideInRight');
+
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+            animationObserver.observe(element);
+        });
+
+        // Modal functionality
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close-modal');
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.closest('.modal').style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            modals.forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Enroll Now button
+        document.getElementById('enrollNowBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal('enrollModal');
+        });
+
+        // Course Details buttons
+        const courseDetailsButtons = document.querySelectorAll('.course-details-btn');
+        courseDetailsButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const course = button.getAttribute('data-course');
+                openCourseDetailsModal(course);
+            });
+        });
+
+        function openCourseDetailsModal(course) {
+            const modal = document.getElementById('courseDetailsModal');
+            const title = document.getElementById('courseDetailsTitle');
+            const content = document.getElementById('courseDetailsContent');
+
+            // You would typically fetch this data from a server
+            const courseDetails = {
+                'ethical-hacking': {
+                    title: 'Ethical Hacking',
+                    description: 'Learn the art of ethical hacking and protect systems from cyber threats. This comprehensive course covers various aspects of cybersecurity, including network security, web application security, and social engineering.',
+                    duration: '12 weeks',
+                    level: 'Beginner to Intermediate',
+                    price: '$999'
+                },
+                'network-security': {
+                    title: 'Network Security',
+                    description: 'Master the techniques to secure networks and prevent unauthorized access. This course covers topics such as firewall configuration, intrusion detection systems, and secure network design.',
+                    duration: '10 weeks',
+                    level: 'Intermediate',
+                    price: '$899'
+                },
+                'cryptography': {
+                    title: 'Cryptography',
+                    description: 'Dive into the world of encryption and secure communication protocols. Learn about symmetric and asymmetric encryption, digital signatures, and blockchain technology.',
+                    duration: '8 weeks',
+                    level: 'Advanced',
+                    price: '$799'
+                }
+            };
+
+            const details = courseDetails[course];
+            title.textContent = details.title;
+            content.innerHTML = `
+                <p>${details.description}</p>
+                <ul>
+                    <li><strong>Duration:</strong> ${details.duration}</li>
+                    <li><strong>Level:</strong> ${details.level}</li>
+                    <li><strong>Price:</strong> ${details.price}</li>
+                </ul>
+            `;
+
+            modal.style.display = 'block';
+        }
+
+        // Enroll from course details
+        document.getElementById('enrollFromDetailsBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal('courseDetailsModal');
+            openModal('enrollModal');
+        });
+
+        // Enrollment form submission
+        document.getElementById('enrollForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the form data to a server
+            console.log('Enrollment submitted');
+            closeModal('enrollModal');
+            openModal('paymentModal');
+        });
+
+        // Payment form submission
+        document.getElementById('paymentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically process the payment
+            console.log('Payment processed');
+            closeModal('paymentModal');
+            alert('Thank you for your enrollment! We will contact you shortly with further details.');
+        });
+
+        // Simple testimonial slider
+        let currentTestimonial = 0;
+        const testimonials = [
+            {
+                name: "Sarah L.",
+                role: "Security Analyst at Tech Corp",
+                content: "The courses at Sarvodaya Security have been instrumental in advancing my career in cybersecurity. The hands-on approach and expert instructors make complex concepts easy to grasp."
+            },
+            {
+                name: "John D.",
+                role: "IT Manager at Finance Inc.",
+                content: "I've taken several courses from Sarvodaya Security, and each one has significantly improved my understanding of cybersecurity. The practical labs are especially valuable."
+            },
+            {
+                name: "Emily R.",
+                role: "Freelance Security Consultant",
+                content: "As a freelancer, staying up-to-date with the latest security trends is crucial. Sarvodaya Security's courses have been a game-changer for me, providing cutting-edge knowledge and skills."
+            }
+        ];
+
+        function updateTestimonial() {
+            const testimonialSlide = document.querySelector('.testimonial-slide');
+            const testimonial = testimonials[currentTestimonial];
+            testimonialSlide.innerHTML = `
+                <img src="https://source.unsplash.com/random/100x100/?portrait" alt="${testimonial.name}">
+                <p>"${testimonial.content}"</p>
+                <h4>${testimonial.name}</h4>
+                <p>${testimonial.role}</p>
+            `;
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            updateTestimonial();
+        }
+
+        setInterval(nextTestimonial, 5000); // Change testimonial every 5 seconds
+        updateTestimonial(); // Initial update
+
+        // Contact form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the form data to a server
+            console.log('Contact form submitted');
+            alert('Thank you for your message! We will get back to you soon.');
+            e.target.reset();
+        });
+
+        // Initialize some libraries
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            // Swiper options
+        });
+
+        // Initialize Typed.js
+        var typed = new Typed('#typed-element', {
+            strings: ['Cybersecurity', 'Ethical Hacking', 'Network Defense'],
+            typeSpeed: 50,
+            backSpeed: 50,
+            loop: true
+        });
+
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+            // Particles.js configuration
+        });
+
+        // Example Chart.js usage
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // Chart configuration
+        });
+
+        // Example Three.js scene
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        // Set up your Three.js scene here
+    </script>
+</body>
+</html>
